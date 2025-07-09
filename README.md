@@ -1,5 +1,18 @@
 # 🛒 Node.js + Express Cart App
 
+## 🚀 Project Description
+**This project is designed to skill up and showcase QA Automation skills.**
+
+It features a realistic web application with login, product, and cart flows, and is fully instrumented for:
+- Manual QA
+- Automated end-to-end testing (Cypress)
+- API testing (Postman)
+- Load testing (Locust)
+
+Use this project to practice, demonstrate, or interview for QA Automation roles!
+
+---
+
 ## 💡 Project Overview
 A simple Node.js and Express web application featuring:
 - User login system (with session management)
@@ -101,6 +114,12 @@ A simple Node.js and Express web application featuring:
 
 ## 📋 Manual Test Cases
 See [`test-cases.md`](./test-cases.md) for a full list of manual QA scenarios.
+
+---
+
+## 👤 Author
+**Waqar Wani**  
+[LinkedIn: waqar-wani-b610941a5](https://www.linkedin.com/in/waqar-wani-b610941a5/)
 
 ---
 
