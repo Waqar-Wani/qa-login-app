@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Products</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div class="container">
+    <h2>Products</h2>
+    <a href="/cart">Go to Cart</a> |
+    <a href="/welcome">Home</a> |
+    <a href="/logout">Logout</a>
+    <ul class="product-list">
+      <% products.forEach(function(product) { %>
+        <li>
+          <h3><%= product.name %></h3>
+          <p><%= product.description %></p>
+          <p>Price: $<%= product.price %></p>
+          <button class="add-to-cart-btn" data-id="<%= product.id %>">Add to Cart</button>
+        </li>
+      <% }); %>
+    </ul>
+    <div id="cart-message" style="text-align:center;margin-top:10px;"></div>
+  </div>
+  <script>
+    document.querySelectorAll('.add-to-cart-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        fetch('/add-to-cart', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ productId: this.dataset.id }),
+          credentials: 'same-origin'
+        })
+        .then(res => res.json())
+        .then(data => {
+          const msg = document.getElementById('cart-message');
+          if (data.success) {
+            msg.textContent = 'Added to cart! (' + data.cartCount + ' items)';
+            msg.style.color = 'green';
+          } else {
+            msg.textContent = data.message || 'Error adding to cart.';
+            msg.style.color = 'red';
+          }
+        })
+        .catch(() => {
+          const msg = document.getElementById('cart-message');
+          msg.textContent = 'Error adding to cart.';
+          msg.style.color = 'red';
+        });
+      });
+    });
+  </script>
+</body>
+</html> 
